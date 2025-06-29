@@ -21,26 +21,18 @@ Recopila:
     Aplicativo
 """
 
-import uvicorn
-from fastapi import FastAPI
+import uvicorn, os
+
+from src import crear_app
 
 #inicializacion de la aplicación
-app = FastAPI(
-    title="Multi Screw Event-Driven Backend",
-    description="This is the backend for the Multi Screw event-driven application.",
-    version="1.0.0",
-    contact={
-        "name": "Aref",
-    },
-    license_info={
-        "name": "GPLv3",
-        "url": "https://www.gnu.org/licenses/gpl-3.0.html"
-    },
-)
+app = crear_app()
 
 @app.get("/")
 async def index(): return {"message": "Welcome to Multi Screw Event-Driven Backend"}
 
-def main(): uvicorn.run(app, host="0.0.0.0", port=8000)
+def main():
+    from src.config import config
+    uvicorn.run(app, host=config["servidor"], port=config["puerto"])
 
 if __name__ == "__main__": main()
