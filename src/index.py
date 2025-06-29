@@ -33,6 +33,6 @@ async def index(): return {"message": "Welcome to Multi Screw Event-Driven Backe
 
 def main():
     from src.config import config
-    uvicorn.run(app, host=config["servidor"], port=config["puerto"])
+    uvicorn.run(app, host=config["servidor"], port=int(config["puerto"]))
 
 if __name__ == "__main__": main()
