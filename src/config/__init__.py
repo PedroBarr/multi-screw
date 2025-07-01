@@ -68,4 +68,4 @@ def init_config():
     raise RuntimeError("Ningun archivo valido encontrado para la " +
       "configuracion")
 
-  
+  config["depurado"] = config.get("entorno") == "development"

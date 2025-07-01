@@ -63,4 +63,6 @@ def crear_app() -> FastAPI:
 
   init_config()
 
+  app.debug = config.get("depurado", False)
+
   return app

@@ -1,4 +1,5 @@
 {
   "servidor": "$SERVIDOR",
-  "puerto": "$PORT"
+  "puerto": "$PORT",
+  "entorno": "$ENVIRONMENT"
 }

@@ -29,10 +29,18 @@ from src import crear_app
 app = crear_app()
 
 @app.get("/")
-async def index(): return {"message": "Welcome to Multi Screw Event-Driven Backend"}
+async def index():
+  return {"message": "Welcome to Multi Screw Event-Driven"}
 
 def main():
-    from src.config import config
-    uvicorn.run(app, host=config["servidor"], port=int(config["puerto"]))
+  from src.config import config
+
+  uvicorn.run(
+    "src.index:app",
+    host=config["servidor"],
+    port=int(config["puerto"]),
+    reload=app.debug,
+    log_level="debug" if app.debug else "info",
+  )
 
 if __name__ == "__main__": main()
