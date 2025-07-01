@@ -32,6 +32,10 @@ app = crear_app()
 async def index():
   return {"message": "Welcome to Multi Screw Event-Driven"}
 
+from src.encajes import app as encaje
+
+app.mount("/encajes", encaje)
+
 def main():
   from src.config import config
 
@@ -41,6 +45,7 @@ def main():
     port=int(config["puerto"]),
     reload=app.debug,
     log_level="debug" if app.debug else "info",
+    ws="websockets",
   )
 
 if __name__ == "__main__": main()
