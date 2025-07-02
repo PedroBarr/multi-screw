@@ -37,6 +37,7 @@ import os
 from fastapi import FastAPI
 
 from src.config import config, init_config
+from src.trazabilidad import trazabilidad
 
 def crear_app() -> FastAPI:
   """ Funcion: Fabrica de aplicativo
@@ -49,16 +50,7 @@ def crear_app() -> FastAPI:
   """
   #inicializacion de la aplicación
   app = FastAPI(
-    title="Multi Screw Event-Driven Backend",
-    description="This is the backend for the Multi Screw event-driven application.",
-    version="1.0.0",
-    contact={
-        "name": "Aref",
-    },
-    license_info={
-        "name": "GPLv3",
-        "url": "https://www.gnu.org/licenses/gpl-3.0.html"
-    },
+    **trazabilidad,
   )
 
   init_config()

@@ -23,14 +23,28 @@ Recopila:
 
 import uvicorn, os
 
+from fastapi.responses import RedirectResponse
+
 from src import crear_app
 
 #inicializacion de la aplicación
 app = crear_app()
 
+from src.trazabilidad import (
+  router as trazabilidad_router,
+  prefijo as trazabilidad_prefijo,
+  etiquetas as trazabilidad_etiquetas,
+)
+
+app.include_router(
+  trazabilidad_router,
+  prefix=trazabilidad_prefijo,
+  tags=trazabilidad_etiquetas,
+)
+
 @app.get("/")
 async def index():
-  return {"message": "Welcome to Multi Screw Event-Driven"}
+  return RedirectResponse(url=trazabilidad_prefijo)
 
 from src.encajes import app as encaje
 
